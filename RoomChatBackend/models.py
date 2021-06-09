@@ -3,9 +3,13 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class User(AbstractUser):
+    created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=10)
     profile_picture = models.ImageField(upload_to='profile_images/',null = True)
+
+    class Meta:
+        ordering = ['created']
 
 class Room(models.Model):
     room_id = models.CharField(max_length=10)
